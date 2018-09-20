@@ -37,9 +37,12 @@ class KibanaController extends Controller
     }
 
     /**
-     * @Route("/_plugin/kibana/{resource}", requirements={"resource"=".+"}, name="admin-logs")
+     * Open `/_plugin/kibana/app/kibana` to open Kibana's main page
+     *
+     * @Route("/_plugin/kibana/{resource}", requirements={"resource"=".+"}, name="kibana-resource")
+     * @Route("/_plugin/kibana/{resource}", requirements={"resource"=".+"}, defaults={"resource": "app/kibana"}, name="kibana-index")
      */
-    public function proxyAction($resource, Request $symfonyRequest)
+    public function proxy($resource, Request $symfonyRequest)
     {
         $httpClient = new Client();
         $httpFoundationFactory = new HttpFoundationFactory();
